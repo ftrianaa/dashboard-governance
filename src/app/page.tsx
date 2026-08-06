@@ -16,6 +16,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { FiMessageSquare, FiTarget, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 
@@ -37,6 +38,11 @@ export default function DashboardPage() {
   const { data, isLoading, error } = useSentimentData();
   const [selectedId, setSelectedId] = useState<string>("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const {
+    isOpen: isMobileSidebarOpen,
+    onOpen: onOpenMobileSidebar,
+    onClose: onCloseMobileSidebar,
+  } = useDisclosure();
 
   useEffect(() => {
     if (data && data.length > 0 && !selectedId) {
@@ -64,45 +70,53 @@ export default function DashboardPage() {
 
   return (
     <Box minH="100vh">
-      <Header />
+      <Header onOpenSidebar={onOpenMobileSidebar} showSidebarToggle />
 
       <Flex align="flex-start">
         <Sidebar
           datasets={data}
           isOpen={isSidebarOpen}
           onToggle={() => setIsSidebarOpen((prev) => !prev)}
+          isMobileOpen={isMobileSidebarOpen}
+          onCloseMobile={onCloseMobileSidebar}
         />
 
         <Box flex={1} minW={0}>
-          <Container maxW="7xl" mt={8} pb={10}>
+          <Container maxW="7xl" mt={{ base: 5, md: 8 }} pb={10} px={{ base: 4, md: 6 }}>
             <VStack spacing={6} align="stretch">
               <Box>
-                <Heading size="lg" mb={1}>
+                <Heading size={{ base: "md", md: "lg" }} mb={1}>
                   Ringkasan Analisis Sentimen
                 </Heading>
-                <Text fontSize="sm" color="gray.500">
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
                   Super App Polri & Digital Korlantas Polri — Google Play Store &amp; App
                   Store
                 </Text>
               </Box>
 
               <Tabs variant="soft-rounded" colorScheme="brand" isLazy>
-                <TabList flexWrap="wrap" gap={2}>
-                  <Tab fontWeight="semibold">📊 Perbandingan Keseluruhan</Tab>
-                  <Tab fontWeight="semibold">🔍 Detail per Aplikasi</Tab>
-                </TabList>
+                <Box overflowX="auto" pb={1}>
+                  <TabList flexWrap={{ base: "nowrap", md: "wrap" }} gap={2} w="max-content">
+                    <Tab fontWeight="semibold" fontSize={{ base: "xs", md: "sm" }} whiteSpace="nowrap">
+                      📊 Perbandingan Keseluruhan
+                    </Tab>
+                    <Tab fontWeight="semibold" fontSize={{ base: "xs", md: "sm" }} whiteSpace="nowrap">
+                      🔍 Detail per Aplikasi
+                    </Tab>
+                  </TabList>
+                </Box>
 
                 <TabPanels>
-                  {/* TAB 1: tampil default, berisi perbandingan seluruh dataset */}
+                  {/* TAB 1: perbandingan seluruh dataset */}
                   <TabPanel px={0} pt={6}>
                     <ComparisonOverview data={data} />
                   </TabPanel>
 
-                  {/* TAB 2: detail per aplikasi setelah user memilih dataset */}
+                  {/* TAB 2: detail per aplikasi */}
                   <TabPanel px={0} pt={6}>
                     <VStack spacing={8} align="stretch">
                       <Box>
-                        <Heading size="md" mb={1}>
+                        <Heading size={{ base: "sm", md: "md" }} mb={1}>
                           Pilih Dataset
                         </Heading>
                         <Text fontSize="sm" color="gray.500" mb={4}>
@@ -118,8 +132,10 @@ export default function DashboardPage() {
                       {selected && (
                         <>
                           <Box>
-                            <Heading size="md">{selected.appName}</Heading>
-                            <Text fontSize="sm" color="gray.500">
+                            <Heading size={{ base: "sm", md: "md" }}>
+                              {selected.appName}
+                            </Heading>
+                            <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
                               {selected.platform} • Versi {selected.version} • Diperbarui{" "}
                               {new Date(selected.lastUpdated).toLocaleDateString("id-ID", {
                                 day: "numeric",
