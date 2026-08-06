@@ -1,170 +1,282 @@
-{
-  "summary": {
-    "korlantas": {
-      "totalReviews": 5490,
-      "avgAccuracy": 0.8739,
-      "positivePct": 60.15,
-      "negativePct": 26.93,
-      "neutralPct": 12.92,
-      "topIssue": "Gagal Verifikasi E-KTP & Server OTP Timeout",
-      "topPraise": "Perpanjangan SIM Online Sangat Cepat & Praktis"
+[
+  {
+    "id": "korlantas-playstore-1.7.5",
+    "appName": "Digital Korlantas Polri",
+    "platform": "Google Play Store",
+    "version": "1.7.5",
+    "totalReviews": 320,
+    "sentimentDistribution": { "positive": 190, "negative": 90, "neutral": 40 },
+    "naiveBayes": {
+      "accuracy": 0.88,
+      "precision": 0.86,
+      "recall": 0.85,
+      "f1Score": 0.855,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [172, 10, 8],
+          [9, 76, 5],
+          [5, 3, 32]
+        ]
+      }
     },
-    "superapp": {
-      "totalReviews": 7720,
-      "avgAccuracy": 0.861,
-      "positivePct": 57.22,
-      "negativePct": 30.03,
-      "neutralPct": 12.75,
-      "topIssue": "Pembayaran VA Expired & Loading SKCK Berat",
-      "topPraise": "Layanan Polsek/Polres & SKCK Sangat Lengkap"
-    }
+    "topKeywords": {
+      "positive": ["mudah", "cepat", "membantu", "praktis", "efisien", "terpercaya"],
+      "negative": ["error", "lemot", "gagal verifikasi", "susah login", "server down", "ribet"]
+    },
+    "sampleReviews": [
+      { "text": "Aplikasinya sangat membantu untuk perpanjang SIM online, prosesnya cepat.", "sentiment": "positive", "rating": 5 },
+      { "text": "Sering gagal saat upload dokumen, harus coba berkali-kali.", "sentiment": "negative", "rating": 2 },
+      { "text": "Lumayan, tapi tampilannya bisa lebih simpel lagi.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Verifikasi wajah sering error, jadi tidak bisa lanjut.", "sentiment": "negative", "rating": 1 },
+      { "text": "Sangat praktis, tidak perlu antre lama di Satpas.", "sentiment": "positive", "rating": 5 },
+      { "text": "Aplikasi oke tapi notifikasi status terkadang telat.", "sentiment": "neutral", "rating": 3 }
+    ],
+    "lastUpdated": "2026-01-10"
   },
-  "comparison": [
-    { "name": "Korlantas PS v1.7.5", "app": "Digital Korlantas", "store": "Play Store", "ver": "v1.7.5", "positive": 58.2, "negative": 28.4, "neutral": 13.4 },
-    { "name": "Korlantas PS v1.7.9", "app": "Digital Korlantas", "store": "Play Store", "ver": "v1.7.9", "positive": 62.5, "negative": 25.1, "neutral": 12.4 },
-    { "name": "Korlantas AS v1.7.5", "app": "Digital Korlantas", "store": "App Store", "ver": "v1.7.5", "positive": 54.1, "negative": 32.5, "neutral": 13.4 },
-    { "name": "Korlantas AS v1.7.9", "app": "Digital Korlantas", "store": "App Store", "ver": "v1.7.9", "positive": 65.8, "negative": 21.7, "neutral": 12.5 },
-    { "name": "SuperApp PS v2.1.10", "app": "SuperApp Polri", "store": "Play Store", "ver": "v2.1.10", "positive": 52.8, "negative": 34.2, "neutral": 13.0 },
-    { "name": "SuperApp PS v2.2.7", "app": "SuperApp Polri", "store": "Play Store", "ver": "v2.2.7", "positive": 61.4, "negative": 26.1, "neutral": 12.5 },
-    { "name": "SuperApp AS v2.1.10", "app": "SuperApp Polri", "store": "App Store", "ver": "v2.1.10", "positive": 50.5, "negative": 36.5, "neutral": 13.0 },
-    { "name": "SuperApp AS v2.2.7", "app": "SuperApp Polri", "store": "App Store", "ver": "v2.2.7", "positive": 64.2, "negative": 23.3, "neutral": 12.5 }
-  ],
-  "datasets": {
-    "korlantas_playstore_v175": {
-      "appName": "Digital Korlantas Polri",
-      "store": "Google Play Store",
-      "version": "v1.7.5",
-      "metrics": { "accuracy": 0.865, "totalReviews": 1420 },
-      "distribution": { "positive": 58.2, "negative": 28.4, "neutral": 13.4 },
-      "topWords": {
-        "positive": [{ "word": "bagus", "count": 210 }, { "word": "mudah", "count": 185 }, { "word": "membantu", "count": 142 }, { "word": "lancar", "count": 118 }, { "word": "sim", "count": 95 }],
-        "negative": [{ "word": "gagal", "count": 178 }, { "word": "error", "count": 145 }, { "word": "verifikasi", "count": 132 }, { "word": "ktp", "count": 110 }, { "word": "OTP", "count": 88 }],
-        "neutral": [{ "word": "aplikasi", "count": 90 }, { "word": "proses", "count": 75 }, { "word": "update", "count": 62 }, { "word": "kirim", "count": 48 }, { "word": "admin", "count": 35 }]
-      },
-      "aiInsights": [
-        "Tingkatkan keandalan server verifikasi e-KTP dan pengiriman OTP SMS.",
-        "Perbaiki error gagal muat foto pada saat pengajuan perpanjangan SIM.",
-        "Sediakan penjelasan status transaksi yang lebih informatif bagi pengguna."
-      ]
+  {
+    "id": "korlantas-playstore-1.7.9",
+    "appName": "Digital Korlantas Polri",
+    "platform": "Google Play Store",
+    "version": "1.7.9",
+    "totalReviews": 410,
+    "sentimentDistribution": { "positive": 260, "negative": 95, "neutral": 55 },
+    "naiveBayes": {
+      "accuracy": 0.91,
+      "precision": 0.89,
+      "recall": 0.88,
+      "f1Score": 0.885,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [238, 14, 8],
+          [10, 80, 5],
+          [6, 4, 45]
+        ]
+      }
     },
-    "korlantas_playstore_v179": {
-      "appName": "Digital Korlantas Polri",
-      "store": "Google Play Store",
-      "version": "v1.7.9",
-      "metrics": { "accuracy": 0.8875, "totalReviews": 1850 },
-      "distribution": { "positive": 62.5, "negative": 25.1, "neutral": 12.4 },
-      "topWords": {
-        "positive": [{ "word": "cepat", "count": 260 }, { "word": "mantap", "count": 215 }, { "word": "mudah", "count": 190 }, { "word": "sim", "count": 165 }, { "word": "berhasil", "count": 140 }],
-        "negative": [{ "word": "stuck", "count": 150 }, { "word": "bayar", "count": 125 }, { "word": "lama", "count": 118 }, { "word": "sistem", "count": 92 }, { "word": "server", "count": 85 }],
-        "neutral": [{ "word": "foto", "count": 80 }, { "word": "biaya", "count": 65 }, { "word": "resi", "count": 55 }, { "word": "alamat", "count": 40 }, { "word": "pengiriman", "count": 32 }]
-      },
-      "aiInsights": [
-        "Optimasikan modul pembayaran agar tidak mengalami kegagalan/timeout.",
-        "Perbaiki latensi integrasi sistem dengan pihak kurir pengiriman SIM.",
-        "Sediakan fallback otomatis jika verifikasi biometrik wajah terhambat."
-      ]
+    "topKeywords": {
+      "positive": ["update bagus", "stabil", "cepat", "mudah dipakai", "membantu", "responsif"],
+      "negative": ["masih error", "loading lama", "susah daftar", "bug", "crash", "lemot"]
     },
-    "korlantas_appstore_v175": {
-      "appName": "Digital Korlantas Polri",
-      "store": "Apple App Store",
-      "version": "v1.7.5",
-      "metrics": { "accuracy": 0.852, "totalReviews": 980 },
-      "distribution": { "positive": 54.1, "negative": 32.5, "neutral": 13.4 },
-      "topWords": {
-        "positive": [{ "word": "praktis", "count": 145 }, { "word": "bagus", "count": 130 }, { "word": "membantu", "count": 112 }, { "word": "online", "count": 90 }, { "word": "resmi", "count": 78 }],
-        "negative": [{ "word": "force", "count": 120 }, { "word": "close", "count": 115 }, { "word": "login", "count": 98 }, { "word": "blank", "count": 85 }, { "word": "ios", "count": 72 }],
-        "neutral": [{ "word": "versi", "count": 55 }, { "word": "update", "count": 48 }, { "word": "fitur", "count": 42 }, { "word": "coba", "count": 38 }, { "word": "akun", "count": 29 }]
-      },
-      "aiInsights": [
-        "Atasi isu crash (force close) pada perangkat iOS dengan versi sistem tertentu.",
-        "Perbaiki respon halaman login setelah pengguna keluar dari aplikasi.",
-        "Optimalkan kompatibilitas antarmuka untuk layar iPhone tipe terbaru."
-      ]
+    "sampleReviews": [
+      { "text": "Update terbaru jauh lebih stabil dibanding sebelumnya.", "sentiment": "positive", "rating": 5 },
+      { "text": "Sekarang proses tilang elektronik jadi lebih mudah dipantau.", "sentiment": "positive", "rating": 4 },
+      { "text": "Masih ada bug saat submit foto kendaraan.", "sentiment": "negative", "rating": 2 },
+      { "text": "Aplikasinya standar saja, belum ada yang istimewa.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Loading lama banget pas buka menu SIM.", "sentiment": "negative", "rating": 2 },
+      { "text": "Cukup membantu untuk cek status tilang.", "sentiment": "positive", "rating": 4 }
+    ],
+    "lastUpdated": "2026-02-18"
+  },
+  {
+    "id": "korlantas-appstore-1.7.5",
+    "appName": "Digital Korlantas Polri",
+    "platform": "App Store",
+    "version": "1.7.5",
+    "totalReviews": 180,
+    "sentimentDistribution": { "positive": 95, "negative": 60, "neutral": 25 },
+    "naiveBayes": {
+      "accuracy": 0.84,
+      "precision": 0.82,
+      "recall": 0.81,
+      "f1Score": 0.815,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [82, 8, 5],
+          [7, 48, 5],
+          [3, 3, 19]
+        ]
+      }
     },
-    "korlantas_appstore_v179": {
-      "appName": "Digital Korlantas Polri",
-      "store": "Apple App Store",
-      "version": "v1.7.9",
-      "metrics": { "accuracy": 0.891, "totalReviews": 1240 },
-      "distribution": { "positive": 65.8, "negative": 21.7, "neutral": 12.5 },
-      "topWords": {
-        "positive": [{ "word": "keren", "count": 195 }, { "word": "cepat", "count": 180 }, { "word": "mudah", "count": 160 }, { "word": "jadi", "count": 135 }, { "word": "proses", "count": 120 }],
-        "negative": [{ "word": "kamera", "count": 88 }, { "word": "scan", "count": 75 }, { "word": "nik", "count": 68 }, { "word": "gagal", "count": 60 }, { "word": "ulang", "count": 52 }],
-        "neutral": [{ "word": "info", "count": 45 }, { "word": "dokumen", "count": 40 }, { "word": "data", "count": 38 }, { "word": "jadwal", "count": 30 }, { "word": "status", "count": 25 }]
-      },
-      "aiInsights": [
-        "Tingkatkan performa modul pemindaian KTP dengan akses kamera iOS.",
-        "Validasi otomatis pembacaan NIK untuk mengurangi pengulangan input.",
-        "Sediakan panduan resolusi pencahayaan saat pengambilan foto fisik SIM."
-      ]
+    "topKeywords": {
+      "positive": ["bagus", "membantu", "praktis", "mudah", "responsif", "cepat"],
+      "negative": ["sering force close", "susah login", "lemot", "gagal", "error terus", "ribet"]
     },
-    "superapp_playstore_v2110": {
-      "appName": "SuperApp Polri Presisi",
-      "store": "Google Play Store",
-      "version": "v2.1.10",
-      "metrics": { "accuracy": 0.849, "totalReviews": 2100 },
-      "distribution": { "positive": 52.8, "negative": 34.2, "neutral": 13.0 },
-      "topWords": {
-        "positive": [{ "word": "lengkap", "count": 310 }, { "word": "skck", "count": 280 }, { "word": "bagus", "count": 240 }, { "word": "bermanfaat", "count": 195 }, { "word": "polri", "count": 170 }],
-        "negative": [{ "word": "berat", "count": 245 }, { "word": "lemot", "count": 210 }, { "word": "stuck", "count": 185 }, { "word": "gagal", "count": 160 }, { "word": "koneksi", "count": 140 }],
-        "neutral": [{ "word": "layanan", "count": 115 }, { "word": "menu", "count": 98 }, { "word": "polsek", "count": 82 }, { "word": "polda", "count": 70 }, { "word": "pendaftaran", "count": 55 }]
-      },
-      "aiInsights": [
-        "Optimalkan ukuran aset aplikasi untuk mengurangi konsumsi memori/RAM.",
-        "Perbaiki waktu muat (loading time) pada katalog layanan SKCK Online.",
-        "Tingkatkan batas waktu penanganan timeout jaringan pada koneksi lambat."
-      ]
+    "sampleReviews": [
+      { "text": "Bagus untuk pengurusan SIM tanpa harus datang langsung.", "sentiment": "positive", "rating": 5 },
+      { "text": "Sering force close saat mau upload KTP.", "sentiment": "negative", "rating": 1 },
+      { "text": "Fungsional, tapi desainnya kurang menarik.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Login pakai wajah kadang gagal terus.", "sentiment": "negative", "rating": 2 },
+      { "text": "Sangat membantu untuk generasi yang sibuk kerja.", "sentiment": "positive", "rating": 5 },
+      { "text": "Perlu banyak perbaikan di sisi performa.", "sentiment": "negative", "rating": 2 }
+    ],
+    "lastUpdated": "2026-01-12"
+  },
+  {
+    "id": "korlantas-appstore-1.7.9",
+    "appName": "Digital Korlantas Polri",
+    "platform": "App Store",
+    "version": "1.7.9",
+    "totalReviews": 210,
+    "sentimentDistribution": { "positive": 130, "negative": 55, "neutral": 25 },
+    "naiveBayes": {
+      "accuracy": 0.87,
+      "precision": 0.85,
+      "recall": 0.84,
+      "f1Score": 0.845,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [114, 10, 6],
+          [6, 44, 5],
+          [3, 3, 19]
+        ]
+      }
     },
-    "superapp_playstore_v227": {
-      "appName": "SuperApp Polri Presisi",
-      "store": "Google Play Store",
-      "version": "v2.2.7",
-      "metrics": { "accuracy": 0.878, "totalReviews": 2850 },
-      "distribution": { "positive": 61.4, "negative": 26.1, "neutral": 12.5 },
-      "topWords": {
-        "positive": [{ "word": "mantap", "count": 420 }, { "word": "skck", "count": 380 }, { "word": "mudah", "count": 340 }, { "word": "cepat", "count": 310 }, { "word": "ok", "count": 260 }],
-        "negative": [{ "word": "pembayaran", "count": 198 }, { "word": "kode", "count": 165 }, { "word": "va", "count": 142 }, { "word": "expired", "count": 120 }, { "word": "bisa", "count": 105 }],
-        "neutral": [{ "word": "persyaratan", "count": 95 }, { "word": "ambil", "count": 80 }, { "word": "sistem", "count": 75 }, { "word": "lokasi", "count": 62 }, { "word": "syarat", "count": 50 }]
-      },
-      "aiInsights": [
-        "Selesaikan masalah kadaluarsa otomatis kode Virtual Account yang terlalu cepat.",
-        "Perbaiki sinkronisasi status pembayaran SKCK dari payment gateway.",
-        "Sediakan fitur pengingat tenggat waktu pengambilan dokumen di Polres."
-      ]
+    "topKeywords": {
+      "positive": ["lebih cepat", "stabil", "mudah", "bagus", "membantu", "praktis"],
+      "negative": ["masih lemot", "bug ringan", "susah verifikasi", "error", "notifikasi telat", "ribet"]
     },
-    "superapp_appstore_v2110": {
-      "appName": "SuperApp Polri Presisi",
-      "store": "Apple App Store",
-      "version": "v2.1.10",
-      "metrics": { "accuracy": 0.835, "totalReviews": 1150 },
-      "distribution": { "positive": 50.5, "negative": 36.5, "neutral": 13.0 },
-      "topWords": {
-        "positive": [{ "word": "inovatif", "count": 160 }, { "word": "lengkap", "count": 145 }, { "word": "bagus", "count": 125 }, { "word": "membantu", "count": 110 }, { "word": "polisi", "count": 95 }],
-        "negative": [{ "word": "crash", "count": 155 }, { "word": "keluar", "count": 130 }, { "word": "sendiri", "count": 118 }, { "word": "lokasi", "count": 95 }, { "word": "gps", "count": 82 }],
-        "neutral": [{ "word": "akses", "count": 60 }, { "word": "peta", "count": 52 }, { "word": "notifikasi", "count": 45 }, { "word": "posisi", "count": 38 }, { "word": "ijin", "count": 30 }]
-      },
-      "aiInsights": [
-        "Perbaiki penanganan izin lokasi/GPS pada iOS untuk mencegah crash.",
-        "Optimalkan manajemen memori background process aplikasi di Apple Device.",
-        "Sediakan fitur offline draft saat pengguna mengisi formulir pendaftaran."
-      ]
+    "sampleReviews": [
+      { "text": "Update ini terasa lebih cepat dan stabil.", "sentiment": "positive", "rating": 5 },
+      { "text": "Verifikasi dokumen masih agak lama prosesnya.", "sentiment": "negative", "rating": 2 },
+      { "text": "Sudah lumayan bagus, semoga terus ditingkatkan.", "sentiment": "neutral", "rating": 4 },
+      { "text": "Sangat membantu untuk pengurusan SIM C.", "sentiment": "positive", "rating": 5 },
+      { "text": "Notifikasi status pengajuan sering telat masuk.", "sentiment": "negative", "rating": 2 },
+      { "text": "Tampilan lebih rapi dari versi sebelumnya.", "sentiment": "positive", "rating": 4 }
+    ],
+    "lastUpdated": "2026-03-05"
+  },
+  {
+    "id": "superapp-playstore-2.1.10",
+    "appName": "Super App Polri",
+    "platform": "Google Play Store",
+    "version": "2.1.10",
+    "totalReviews": 500,
+    "sentimentDistribution": { "positive": 260, "negative": 180, "neutral": 60 },
+    "naiveBayes": {
+      "accuracy": 0.82,
+      "precision": 0.80,
+      "recall": 0.79,
+      "f1Score": 0.795,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [210, 35, 15],
+          [30, 135, 15],
+          [10, 10, 40]
+        ]
+      }
     },
-    "superapp_appstore_v227": {
-      "appName": "SuperApp Polri Presisi",
-      "store": "Apple App Store",
-      "version": "v2.2.7",
-      "metrics": { "accuracy": 0.882, "totalReviews": 1620 },
-      "distribution": { "positive": 64.2, "negative": 23.3, "neutral": 12.5 },
-      "topWords": {
-        "positive": [{ "word": "top", "count": 230 }, { "word": "skck", "count": 210 }, { "word": "mudah", "count": 195 }, { "word": "praktis", "count": 175 }, { "word": "terbaik", "count": 150 }],
-        "negative": [{ "word": "upload", "count": 110 }, { "word": "file", "count": 98 }, { "word": "ukuran", "count": 85 }, { "word": "pdf", "count": 72 }, { "word": "gagal", "count": 65 }],
-        "neutral": [{ "word": "dokumen", "count": 58 }, { "word": "format", "count": 48 }, { "word": "simpan", "count": 42 }, { "word": "berkas", "count": 35 }, { "word": "unduh", "count": 28 }]
-      },
-      "aiInsights": [
-        "Perluas fleksibilitas kompresi otomatis untuk upload berkas/PDF.",
-        "Tingkatkan kecepatan konfirmasi pesan sukses setelah unggah persyaratan.",
-        "Sediakan pratinjau (preview) dokumen sebelum proses submisi akhir."
-      ]
-    }
+    "topKeywords": {
+      "positive": ["lengkap", "inovatif", "membantu", "user friendly", "cepat", "praktis"],
+      "negative": ["sering crash", "lambat", "verifikasi lama", "bug", "susah daftar", "loading lama"]
+    },
+    "sampleReviews": [
+      { "text": "Fiturnya lengkap, semua layanan Polri ada di satu aplikasi.", "sentiment": "positive", "rating": 5 },
+      { "text": "Aplikasi sering crash saat buka menu lapor.", "sentiment": "negative", "rating": 1 },
+      { "text": "Konsepnya bagus tapi eksekusinya masih kurang.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Proses pendaftaran akun lama sekali, hampir 30 menit.", "sentiment": "negative", "rating": 2 },
+      { "text": "Sangat membantu untuk cek SKCK online.", "sentiment": "positive", "rating": 5 },
+      { "text": "Loading lama tiap pindah halaman.", "sentiment": "negative", "rating": 2 }
+    ],
+    "lastUpdated": "2026-01-20"
+  },
+  {
+    "id": "superapp-playstore-2.2.7",
+    "appName": "Super App Polri",
+    "platform": "Google Play Store",
+    "version": "2.2.7",
+    "totalReviews": 560,
+    "sentimentDistribution": { "positive": 340, "negative": 150, "neutral": 70 },
+    "naiveBayes": {
+      "accuracy": 0.89,
+      "precision": 0.87,
+      "recall": 0.86,
+      "f1Score": 0.865,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [298, 28, 14],
+          [18, 120, 12],
+          [8, 7, 55]
+        ]
+      }
+    },
+    "topKeywords": {
+      "positive": ["update mantap", "stabil", "lengkap", "cepat", "responsif", "membantu"],
+      "negative": ["masih bug", "lemot", "susah login", "verifikasi lama", "crash sesekali", "ribet"]
+    },
+    "sampleReviews": [
+      { "text": "Update terbaru jauh lebih stabil dan cepat.", "sentiment": "positive", "rating": 5 },
+      { "text": "Sekarang jarang crash, jauh lebih baik dari versi lama.", "sentiment": "positive", "rating": 5 },
+      { "text": "Masih ada bug kecil di fitur pelaporan online.", "sentiment": "negative", "rating": 2 },
+      { "text": "Cukup baik, meski belum sempurna.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Login kadang masih gagal di awal pembukaan.", "sentiment": "negative", "rating": 2 },
+      { "text": "Sangat membantu untuk layanan SKCK dan lapor kehilangan.", "sentiment": "positive", "rating": 5 }
+    ],
+    "lastUpdated": "2026-03-22"
+  },
+  {
+    "id": "superapp-appstore-2.1.10",
+    "appName": "Super App Polri",
+    "platform": "App Store",
+    "version": "2.1.10",
+    "totalReviews": 240,
+    "sentimentDistribution": { "positive": 110, "negative": 95, "neutral": 35 },
+    "naiveBayes": {
+      "accuracy": 0.79,
+      "precision": 0.77,
+      "recall": 0.76,
+      "f1Score": 0.765,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [85, 18, 7],
+          [15, 70, 10],
+          [6, 7, 22]
+        ]
+      }
+    },
+    "topKeywords": {
+      "positive": ["lengkap", "membantu", "praktis", "bagus", "inovatif", "mudah"],
+      "negative": ["sering error", "lambat", "susah verifikasi", "bug", "force close", "ribet"]
+    },
+    "sampleReviews": [
+      { "text": "Aplikasinya lengkap tapi masih sering error di iOS.", "sentiment": "negative", "rating": 2 },
+      { "text": "Ide bagus untuk satu aplikasi semua layanan Polri.", "sentiment": "positive", "rating": 4 },
+      { "text": "Force close terus tiap buka menu pengaduan.", "sentiment": "negative", "rating": 1 },
+      { "text": "Standar saja, belum ada yang menonjol.", "sentiment": "neutral", "rating": 3 },
+      { "text": "Sangat membantu meski performa masih perlu perbaikan.", "sentiment": "positive", "rating": 4 },
+      { "text": "Verifikasi akun butuh waktu lama sekali.", "sentiment": "negative", "rating": 2 }
+    ],
+    "lastUpdated": "2026-01-25"
+  },
+  {
+    "id": "superapp-appstore-2.2.7",
+    "appName": "Super App Polri",
+    "platform": "App Store",
+    "version": "2.2.7",
+    "totalReviews": 275,
+    "sentimentDistribution": { "positive": 160, "negative": 80, "neutral": 35 },
+    "naiveBayes": {
+      "accuracy": 0.85,
+      "precision": 0.83,
+      "recall": 0.82,
+      "f1Score": 0.825,
+      "confusionMatrix": {
+        "labels": ["Positive", "Negative", "Neutral"],
+        "matrix": [
+          [138, 15, 7],
+          [10, 62, 8],
+          [5, 4, 26]
+        ]
+      }
+    },
+    "topKeywords": {
+      "positive": ["makin lengkap", "stabil", "cepat", "membantu", "responsif", "bagus"],
+      "negative": ["masih lemot", "bug", "susah daftar", "verifikasi lama", "crash sesekali", "ribet"]
+    },
+    "sampleReviews": [
+      { "text": "Sudah jauh lebih stabil dibanding versi sebelumnya.", "sentiment": "positive", "rating": 5 },
+      { "text": "Fitur makin lengkap, sangat membantu warga.", "sentiment": "positive", "rating": 5 },
+      { "text": "Masih ada lag saat upload dokumen besar.", "sentiment": "negative", "rating": 2 },
+      { "text": "Cukup memuaskan untuk penggunaan sehari-hari.", "sentiment": "neutral", "rating": 4 },
+      { "text": "Sesekali masih crash pas buka notifikasi.", "sentiment": "negative", "rating": 2 },
+      { "text": "Proses daftar akun sekarang lebih cepat.", "sentiment": "positive", "rating": 4 }
+    ],
+    "lastUpdated": "2026-04-02"
   }
-}
+]

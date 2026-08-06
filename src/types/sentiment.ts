@@ -1,64 +1,47 @@
-export interface WordCount {
-  word: string;
-  count: number;
-}
+export type SentimentLabel = "positive" | "negative" | "neutral";
+export type PlatformName = "Google Play Store" | "App Store";
 
-export interface AppSentimentData {
-  appName: string;
-  store: string;
-  version: string;
-  metrics: {
-    accuracy: number;
-    totalReviews: number;
-  };
-  distribution: {
-    positive: number;
-    negative: number;
-    neutral: number;
-  };
-  topWords: {
-    positive: WordCount[];
-    negative: WordCount[];
-    neutral: WordCount[];
-  };
-  aiInsights: string[];
-}
-
-export interface AppSummary {
-  totalReviews: number;
-  avgAccuracy: number;
-  positivePct: number;
-  negativePct: number;
-  neutralPct: number;
-  topIssue: string;
-  topPraise: string;
-}
-
-export interface ComparisonItem {
-  name: string;
-  app: string;
-  store: string;
-  ver: string;
+export interface SentimentDistribution {
   positive: number;
   negative: number;
   neutral: number;
 }
 
-export type DatasetKey =
-  | 'korlantas_playstore_v175'
-  | 'korlantas_playstore_v179'
-  | 'korlantas_appstore_v175'
-  | 'korlantas_appstore_v179'
-  | 'superapp_playstore_v2110'
-  | 'superapp_playstore_v227'
-  | 'superapp_appstore_v2110'
-  | 'superapp_appstore_v227';
-
-export interface MasterDashboardData {
-  summary: {
-    korlantas: AppSummary;
-    superapp: AppSummary;
-  };
-  comparison: ComparisonItem[];
-  datasets: Record<DatasetKey, AppSentimentData>;
+export interface ConfusionMatrix {
+  labels: string[];
+  matrix: number[][];
 }
+
+export interface NaiveBayesMetrics {
+  accuracy: number;
+  precision: number;
+  recall: number;
+  f1Score: number;
+  confusionMatrix: ConfusionMatrix;
+}
+
+export interface TopKeywords {
+  positive: string[];
+  negative: string[];
+}
+
+export interface SampleReview {
+  text: string;
+  sentiment: SentimentLabel;
+  rating: number;
+}
+
+export interface AppSentimentData {
+  id: string;
+  appName: string;
+  platform: PlatformName;
+  version: string;
+  totalReviews: number;
+  sentimentDistribution: SentimentDistribution;
+  naiveBayes: NaiveBayesMetrics;
+  topKeywords: TopKeywords;
+  sampleReviews: SampleReview[];
+  lastUpdated: string;
+}
+
+export type SentimentDataset = AppSentimentData[];

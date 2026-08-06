@@ -1,60 +1,202 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Box, Center, Spinner, Text, Card, Heading, Stack } from '@chakra-ui/react';
-import { MasterDashboardData } from '@/types/sentiment';
-import DashboardContent from '@/components/DashboardContent';
+import { useMemo, useState, useEffect } from "react";
+import {
+  Container,
+  VStack,
+  SimpleGrid,
+  Heading,
+  Text,
+  Box,
+  Alert,
+  AlertIcon,
+  Flex,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
+import { FiMessageSquare, FiTarget, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 
-export default function Page() {
-  const [data, setData] = useState<MasterDashboardData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Sidebar } from "@/components/Sidebar";
+import { AppSelector } from "@/components/AppSelector";
+import { StatCard } from "@/components/StatCard";
+import { SentimentChart } from "@/components/SentimentChart";
+import { MetricsPanel } from "@/components/MetricsPanel";
+import { ConfusionMatrixTable } from "@/components/ConfusionMatrixTable";
+import { TopKeywords } from "@/components/TopKeywords";
+import { ReviewsTable } from "@/components/ReviewsTable";
+import { DashboardSkeleton } from "@/components/DashboardSkeleton";
+import { ComparisonOverview } from "@/components/overview/ComparisonOverview";
+import { useSentimentData } from "@/lib/useSentimentData";
+
+export default function DashboardPage() {
+  const { data, isLoading, error } = useSentimentData();
+  const [selectedId, setSelectedId] = useState<string>("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
-    fetch('/data/sentiment-data.json')
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Gagal memuat dataset public/data/sentiment-data.json');
-        }
-        return res.json();
-      })
-      .then((data: MasterDashboardData) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+    if (data && data.length > 0 && !selectedId) {
+      setSelectedId(data[0].id);
+    }
+  }, [data, selectedId]);
 
-  if (loading) {
-    return (
-      <Center minH="100vh" bg="gray.50">
-        <Stack align="center" gap={3}>
-          <Spinner size="xl" color="blue.600" />
-          <Text color="gray.600" fontWeight="medium">
-            Memuat Data Evaluasi E-Government Polri...
-          </Text>
-        </Stack>
-      </Center>
-    );
-  }
+  const selected = useMemo(
+    () => data?.find((item) => item.id === selectedId) ?? null,
+    [data, selectedId]
+  );
+
+  if (isLoading) return <DashboardSkeleton />;
 
   if (error || !data) {
     return (
-      <Center minH="100vh" bg="gray.50">
-        <Card.Root p={6} borderLeft="4px solid" borderColor="red.500" bg="white">
-          <Heading size="md" color="red.600" mb={2}>Gagal Memuat Dashboard</Heading>
-          <Text color="gray.600">{error || 'Dataset tidak ditemukan.'}</Text>
-          <Text fontSize="xs" color="gray.400" mt={2}>
-            Pastikan file public/data/sentiment-data.json sudah tersedia.
-          </Text>
-        </Card.Root>
-      </Center>
+      <Container maxW="7xl" py={8}>
+        <Alert status="error" borderRadius="xl">
+          <AlertIcon />
+          {error || "Data tidak ditemukan."}
+        </Alert>
+      </Container>
     );
   }
 
-  return <DashboardContent masterData={data} />;
+  return (
+    <Box minH="100vh">
+      <Header />
+
+      <Flex align="flex-start">
+        <Sidebar
+          datasets={data}
+          isOpen={isSidebarOpen}
+          onToggle={() => setIsSidebarOpen((prev) => !prev)}
+        />
+
+        <Box flex={1} minW={0}>
+          <Container maxW="7xl" mt={8} pb={10}>
+            <VStack spacing={6} align="stretch">
+              <Box>
+                <Heading size="lg" mb={1}>
+                  Ringkasan Analisis Sentimen
+                </Heading>
+                <Text fontSize="sm" color="gray.500">
+                  Super App Polri & Digital Korlantas Polri — Google Play Store &amp; App
+                  Store
+                </Text>
+              </Box>
+
+              <Tabs variant="soft-rounded" colorScheme="brand" isLazy>
+                <TabList flexWrap="wrap" gap={2}>
+                  <Tab fontWeight="semibold">📊 Perbandingan Keseluruhan</Tab>
+                  <Tab fontWeight="semibold">🔍 Detail per Aplikasi</Tab>
+                </TabList>
+
+                <TabPanels>
+                  {/* TAB 1: tampil default, berisi perbandingan seluruh dataset */}
+                  <TabPanel px={0} pt={6}>
+                    <ComparisonOverview data={data} />
+                  </TabPanel>
+
+                  {/* TAB 2: detail per aplikasi setelah user memilih dataset */}
+                  <TabPanel px={0} pt={6}>
+                    <VStack spacing={8} align="stretch">
+                      <Box>
+                        <Heading size="md" mb={1}>
+                          Pilih Dataset
+                        </Heading>
+                        <Text fontSize="sm" color="gray.500" mb={4}>
+                          Klik salah satu untuk melihat detail hasil analisis
+                        </Text>
+                        <AppSelector
+                          datasets={data}
+                          selectedId={selectedId}
+                          onSelect={setSelectedId}
+                        />
+                      </Box>
+
+                      {selected && (
+                        <>
+                          <Box>
+                            <Heading size="md">{selected.appName}</Heading>
+                            <Text fontSize="sm" color="gray.500">
+                              {selected.platform} • Versi {selected.version} • Diperbarui{" "}
+                              {new Date(selected.lastUpdated).toLocaleDateString("id-ID", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                            </Text>
+                          </Box>
+
+                          <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={4}>
+                            <StatCard
+                              label="Total Ulasan"
+                              value={selected.totalReviews.toLocaleString("id-ID")}
+                              icon={FiMessageSquare}
+                              colorScheme="brand"
+                            />
+                            <StatCard
+                              label="Akurasi Model"
+                              value={`${Math.round(selected.naiveBayes.accuracy * 100)}%`}
+                              helpText={`F1-Score ${Math.round(
+                                selected.naiveBayes.f1Score * 100
+                              )}%`}
+                              icon={FiTarget}
+                              colorScheme="brand"
+                            />
+                            <StatCard
+                              label="Ulasan Positif"
+                              value={selected.sentimentDistribution.positive.toLocaleString(
+                                "id-ID"
+                              )}
+                              helpText={`${Math.round(
+                                (selected.sentimentDistribution.positive /
+                                  selected.totalReviews) *
+                                  100
+                              )}% dari total`}
+                              icon={FiThumbsUp}
+                              colorScheme="positive"
+                            />
+                            <StatCard
+                              label="Ulasan Negatif"
+                              value={selected.sentimentDistribution.negative.toLocaleString(
+                                "id-ID"
+                              )}
+                              helpText={`${Math.round(
+                                (selected.sentimentDistribution.negative /
+                                  selected.totalReviews) *
+                                  100
+                              )}% dari total`}
+                              icon={FiThumbsDown}
+                              colorScheme="negative"
+                            />
+                          </SimpleGrid>
+
+                          <SentimentChart distribution={selected.sentimentDistribution} />
+
+                          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
+                            <MetricsPanel metrics={selected.naiveBayes} />
+                            <ConfusionMatrixTable
+                              confusionMatrix={selected.naiveBayes.confusionMatrix}
+                            />
+                          </SimpleGrid>
+
+                          <TopKeywords keywords={selected.topKeywords} />
+
+                          <ReviewsTable reviews={selected.sampleReviews} />
+                        </>
+                      )}
+                    </VStack>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </VStack>
+          </Container>
+
+          <Footer />
+        </Box>
+      </Flex>
+    </Box>
+  );
 }
