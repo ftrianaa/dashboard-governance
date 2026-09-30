@@ -30,7 +30,7 @@ export function SentimentComparisonChart({ data }: Props) {
   return (
     <ChartCard
       title="Perbandingan Distribusi Sentimen"
-      subtitle="Jumlah ulasan per kategori sentimen di setiap dataset"
+      subtitle="Persentase ulasan per kategori sentimen di setiap dataset (%)"
       filename="perbandingan-sentimen"
     >
       {(height) => (
@@ -47,7 +47,10 @@ export function SentimentComparisonChart({ data }: Props) {
                 height={70}
               />
               <YAxis fontSize={11} />
-              <Tooltip />
+
+              <Tooltip
+                formatter={(value) => `${value}%`}
+              />
               <Legend />
               <Bar dataKey="Positif" stackId="a" fill="#22c55e" />
               <Bar dataKey="Netral" stackId="a" fill="#f59e0b" />

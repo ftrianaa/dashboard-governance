@@ -191,11 +191,11 @@ export default function DashboardPage() {
 
                           <SentimentChart distribution={selected.sentimentDistribution} />
 
-                          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
+                          <SimpleGrid columns={{ base: 1, lg: 1 }} spacing={6}>
                             <MetricsPanel metrics={selected.naiveBayes} />
-                            <ConfusionMatrixTable
+                            {/* <ConfusionMatrixTable
                               confusionMatrix={selected.naiveBayes.confusionMatrix}
-                            />
+                            /> */}
                           </SimpleGrid>
 
                           <TopKeywords keywords={selected.topKeywords} />

@@ -56,7 +56,13 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
           <Tbody>
             {reviews.map((review, idx) => (
               <Tr key={idx}>
-                <Td maxW="md">{review.text}</Td>
+                <Td
+                  maxW="md"
+                  whiteSpace="normal"
+                  wordBreak="break-word"
+                >
+                  {review.text}
+                </Td>
                 <Td textAlign="center">
                   <HStack justify="center" spacing={0.5}>
                     {Array.from({ length: review.rating }).map((_, i) => (

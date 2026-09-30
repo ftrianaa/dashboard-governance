@@ -21,98 +21,136 @@ import {
 import {
   FiDownload,
   FiDatabase,
-  FiFileText,
   FiChevronsLeft,
   FiChevronsRight,
 } from "react-icons/fi";
 import type { AppSentimentData } from "@/types/sentiment";
-import { downloadJSON, downloadCSV } from "@/lib/exportUtils";
 import { HEADER_HEIGHT } from "@/lib/layout";
 
 interface SidebarProps {
-  datasets: AppSentimentData[];
+  // Tidak dipakai lagi (unduhan sekarang dari file statis), dibiarkan opsional
+  // supaya pemanggil di parent tidak error.
+  datasets?: AppSentimentData[];
   isOpen: boolean;
   onToggle: () => void;
   isMobileOpen: boolean;
   onCloseMobile: () => void;
 }
 
-function SidebarContent({ datasets }: { datasets: AppSentimentData[] }) {
+interface DataFile {
+  appName: string;
+  version: string;
+  file: string; // nama file di public/data
+}
+
+// Nama file harus sama persis (case-sensitive) dengan di folder public/data
+const PLAYSTORE_FILES: DataFile[] = [
+  {
+    appName: "Digital Korlantas",
+    version: "1.7.5",
+    file: "dataset_id.qoin.korlantas.user_versi_1.7.5.csv",
+  },
+  {
+    appName: "Digital Korlantas",
+    version: "1.7.9",
+    file: "id.qoin.korlantas.user_versi_1.7.9.csv",
+  },
+  {
+    appName: "SuperApp Polri Presisi",
+    version: "2.1.10",
+    file: "dataset_superapps.polri.presisi.presisi_versi_2.1.10.csv",
+  },
+  {
+    appName: "SuperApp Polri Presisi",
+    version: "2.2.7",
+    file: "superapps.polri.presisi.presisi_versi_2.2.7.csv",
+  },
+];
+
+const APPSTORE_FILES: DataFile[] = [
+  {
+    appName: "Digital Korlantas",
+    version: "1.7.5",
+    file: "reviews_korlantas_v1.7.5.csv",
+  },
+  {
+    appName: "Digital Korlantas",
+    version: "1.7.9",
+    file: "reviews_korlantas_v1.7.9.csv",
+  },
+  {
+    appName: "SuperApp Polri Presisi",
+    version: "2.1.10",
+    file: "reviews_superapp_v2.1.10.csv",
+  },
+  {
+    appName: "SuperApp Polri Presisi",
+    version: "2.2.7",
+    file: "reviews_superApp_v2.2.7.csv",
+  },
+];
+
+function FileGroup({ title, files }: { title: string; files: DataFile[] }) {
+  return (
+    <VStack align="stretch" spacing={2}>
+      <Text fontSize="xs" fontWeight="bold" color="gray.500">
+        {title.toUpperCase()}
+      </Text>
+
+      {files.map((f) => (
+        <Box
+          key={f.file}
+          p={2}
+          borderRadius="md"
+          borderWidth="1px"
+          borderColor="gray.100"
+          _hover={{ borderColor: "brand.300", bg: "brand.50" }}
+          _dark={{
+            borderColor: "gray.700",
+            _hover: { bg: "gray.700", borderColor: "brand.400" },
+          }}
+          transition="all 0.15s ease"
+        >
+          <Text fontSize="xs" fontWeight="semibold" noOfLines={1}>
+            {f.appName} • v{f.version}
+          </Text>
+          <Text fontSize="10px" color="gray.500" mb={1}>
+            {title} 
+          </Text>
+          <Button
+            as="a"
+            href={`/data/${f.file}`}
+            download={f.file}
+            size="xs"
+            leftIcon={<FiDownload />}
+            variant="ghost"
+            colorScheme="brand"
+          >
+            CSV
+          </Button>
+        </Box>
+      ))}
+    </VStack>
+  );
+}
+
+function SidebarContent() {
   return (
     <VStack align="stretch" spacing={4}>
       <Text fontSize="xs" color="gray.500">
-        Unduh data hasil analisis sentimen untuk keperluan pelaporan atau riset lanjutan.
+        Unduh data ulasan mentah (CSV) untuk keperluan pelaporan atau riset lanjutan.
       </Text>
 
-      <VStack align="stretch" spacing={2}>
-        <Button
-          leftIcon={<FiFileText />}
-          size="sm"
-          colorScheme="brand"
-          variant="solid"
-          justifyContent="flex-start"
-          onClick={() => downloadJSON(datasets, "sentiment-data-full.json")}
-        >
-          Unduh Semua (JSON)
-        </Button>
-        <Button
-          leftIcon={<FiFileText />}
-          size="sm"
-          colorScheme="brand"
-          variant="outline"
-          justifyContent="flex-start"
-          onClick={() => downloadCSV(datasets, "sentiment-data-full.csv")}
-        >
-          Unduh Semua (CSV)
-        </Button>
-      </VStack>
+      <FileGroup title="Play Store" files={PLAYSTORE_FILES} />
 
       <Divider />
 
-      <Text fontSize="xs" fontWeight="bold" color="gray.500">
-        PER DATASET
-      </Text>
-
-      <VStack align="stretch" spacing={2}>
-        {datasets.map((d) => (
-          <Box
-            key={d.id}
-            p={2}
-            borderRadius="md"
-            borderWidth="1px"
-            borderColor="gray.100"
-            _hover={{ borderColor: "brand.300", bg: "brand.50" }}
-            _dark={{
-              borderColor: "gray.700",
-              _hover: { bg: "gray.700", borderColor: "brand.400" },
-            }}
-            transition="all 0.15s ease"
-          >
-            <Text fontSize="xs" fontWeight="semibold" noOfLines={1}>
-              {d.appName}
-            </Text>
-            <Text fontSize="10px" color="gray.500" mb={1}>
-              {d.platform === "Google Play Store" ? "Play Store" : "App Store"} • v
-              {d.version}
-            </Text>
-            <Button
-              size="xs"
-              leftIcon={<FiDownload />}
-              variant="ghost"
-              colorScheme="brand"
-              onClick={() => downloadJSON(d, `${d.id}.json`)}
-            >
-              JSON
-            </Button>
-          </Box>
-        ))}
-      </VStack>
+      <FileGroup title="App Store" files={APPSTORE_FILES} />
     </VStack>
   );
 }
 
 export function Sidebar({
-  datasets,
   isOpen,
   onToggle,
   isMobileOpen,
@@ -136,7 +174,7 @@ export function Sidebar({
             </HStack>
           </DrawerHeader>
           <DrawerBody pb={6}>
-            <SidebarContent datasets={datasets} />
+            <SidebarContent />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -182,7 +220,7 @@ export function Sidebar({
         </HStack>
 
         <Collapse in={isOpen} animateOpacity>
-          <SidebarContent datasets={datasets} />
+          <SidebarContent />
         </Collapse>
       </VStack>
     </Box>
